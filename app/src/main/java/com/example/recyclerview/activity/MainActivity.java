@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.recyclerview.R;
+import com.example.recyclerview.RecyclerItemClickListener;
 import com.example.recyclerview.adapter.Adapter;
 import com.example.recyclerview.model.Filme;
 
@@ -39,31 +43,58 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         recyclerView.setAdapter( adapter);
+
+        //Evento de click
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Filme filme = listaFilmes.get(position);
+                                Toast.makeText(getApplicationContext(), filme.getTitulo(),Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                Filme filme = listaFilmes.get(position);
+                                Toast.makeText(getApplicationContext(), filme.getTitulo(),Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                )
+        );
     }
 
     public void criarFilmes(){
-        Filme filme = new Filme("Ação","2018","Thor");
+        Filme filme = new Filme("Thor","2018","Ação");
         listaFilmes.add(filme);
 
-        filme = new Filme("Aventura","2018","Batman");
+        filme = new Filme("Batman","2018","Aventura");
         listaFilmes.add(filme);
 
-        filme = new Filme("Ficção","2018","Homem-Aranha");
+        filme = new Filme("Homem-Aranha","2018","Ficção");
         listaFilmes.add(filme);
 
-        filme = new Filme("Comédia","2018","Capitão-América");
+        filme = new Filme("Capitão-América","2018","Comédia");
         listaFilmes.add(filme);
 
-        filme = new Filme("Romance","2018","Hulk");
+        filme = new Filme("Hulk","2018","Romance");
         listaFilmes.add(filme);
 
-        filme = new Filme("Drama","2018","Homem de Ferro");
+        filme = new Filme("Homem de Ferro","2018","Drama");
         listaFilmes.add(filme);
 
-        filme = new Filme("Ficção","2018","Gavião Arqueiro");
+        filme = new Filme("Gavião Arqueiro","2018","Ficção");
         listaFilmes.add(filme);
 
-        filme = new Filme("Ação","2018","Viuva negra");
+        filme = new Filme("Viuva negra","2018","Ação");
         listaFilmes.add(filme);
     }
 }
