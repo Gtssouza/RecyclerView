@@ -2,7 +2,7 @@ package com.example.recyclerview.model;
 
 public class Filme {
 
-    private String genero;
+    private String titulo;
     private String ano;
     private String categoria;
 
@@ -10,18 +10,18 @@ public class Filme {
 
     }
 
-    public Filme(String genero, String ano, String categoria) {
-        this.genero = genero;
+    public Filme(String titulo, String ano, String categoria) {
+        this.titulo = titulo;
         this.ano = ano;
         this.categoria = categoria;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getAno() {
